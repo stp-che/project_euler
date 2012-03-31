@@ -20,13 +20,14 @@ class ::Numeric
   end
 end
 
-def get_answer(given_low_bound=100, given_up_bound=999)
+def largest_palindrom_product(given_low_bound=100, given_up_bound=999)
   low_bound = given_low_bound
   up_bound = given_up_bound
   max_found_palindrom = 0
   loop do
     j = up_bound
-    while j >= low_bound
+    palindrom_found = false
+    while j >= low_bound && !palindrom_found
       mult = up_bound * j
       if mult.palindrom? && max_found_palindrom < mult
         max_found_palindrom = mult
@@ -43,6 +44,6 @@ end
 
 def benchmark(n=100)
   t = Time.now.to_f
-  n.times{ get_answer }
+  n.times{ largest_palindrom_product }
   Time.now.to_f - t
 end
