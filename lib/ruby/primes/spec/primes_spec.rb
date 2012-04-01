@@ -72,18 +72,40 @@ describe Primes do
 
 end
 
-describe Integer, "#prime?" do
+describe Integer do
 
-  it "should be true for prime numbers" do
-    2.prime?.should be_true
-    13.prime?.should be_true
-    31.prime?.should be_true
+  describe "#prime?" do
+
+    it "should be true for prime numbers" do
+      2.prime?.should be_true
+      13.prime?.should be_true
+      31.prime?.should be_true
+    end
+
+    it "should be false fro non prime numbers" do
+      -2.prime?.should be_false
+      1.prime?.should be_false
+      111.prime?.should be_false
+    end
+
   end
 
-  it "should be false fro non prime numbers" do
-    -2.prime?.should be_false
-    1.prime?.should be_false
-    111.prime?.should be_false
+  describe "#prime_factors" do
+
+    it "should return ordered list of prime factors" do
+      2.prime_factors.should == [2]
+      111.prime_factors.should == [3, 37]
+    end
+
+    it "should work for negative numbers" do
+      -49.prime_factors.should == [7]
+    end
+
+    it "should return empty list fo 0 and 1" do
+      0.prime_factors.should == []
+      1.prime_factors.should == []
+    end
+
   end
 
 end

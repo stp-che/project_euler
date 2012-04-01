@@ -78,4 +78,21 @@ class ::Integer
     true
   end
 
+  def prime_factors
+    factors = []
+    n = self.abs
+    return factors if n < 2
+    Primes.below n do |prime|
+      while n % prime == 0
+        n /= prime
+        factors << prime unless factors.include?(prime)
+      end
+      if prime > Math.sqrt(n)
+        factors << n if n > 1
+        return factors
+      end
+    end
+    factors << self if factors.empty?
+  end
+
 end
